@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect, useRef, useState, useCallback,
+} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -19,11 +21,15 @@ const EventWrapper = styled.div`
   width: 100%;
 `;
 
-function Event({ title, time }) {
+function Event({ title, time, removeEventFn }) {
   const [timeToEvent, setTimeToEvent] = useState(undefined);
+  const intervalRef = useRef(null);
 
-  function calculateTime(dateTo, dateNow) {
+  const calculateTime = useCallback((dateTo, dateNow) => {
     let diff = dateTo.getTime() - dateNow.getTime();
+    if (diff <= 0) {
+      return removeEventFn({ title, time });
+    }
     const days = Math.floor(diff / DAY);
     diff -= (days * DAY);
     const hours = Math.floor(diff / HOUR);
@@ -31,16 +37,21 @@ function Event({ title, time }) {
     const minutes = Math.floor(diff / MINUTE);
     diff -= (minutes * MINUTE);
     const seconds = Math.floor(diff / SECOND);
-    setTimeToEvent({
+    return setTimeToEvent({
       days, hours, minutes, seconds,
     });
-  }
+  }, [removeEventFn, time, title]);
 
   useEffect(() => {
-    setInterval(() => {
+    intervalRef.current = setInterval(() => {
       calculateTime(new Date(time), new Date());
     }, 1000);
-  }, [time]);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [time, calculateTime]);
 
   return (
     <>
@@ -66,6 +77,7 @@ function Event({ title, time }) {
 Event.propTypes = {
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
+  removeEventFn: PropTypes.func.isRequired,
 };
 
 export default Event;

@@ -5,6 +5,7 @@ import Input from './Input';
 import Button from './Button';
 
 import EventsContext from '../../context/EventsContext';
+import AlertsContext from '../../context/AlertsContext';
 
 const FormWrapper = styled.form`
   padding: 16px;
@@ -25,6 +26,7 @@ function Form() {
   const eventDateRef = useRef(undefined);
   const eventTimeRef = useRef(undefined);
   const { events, setEvents } = useContext(EventsContext);
+  const { alerts, setAlerts } = useContext(AlertsContext);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -32,11 +34,11 @@ function Form() {
     const { value: eventDate } = eventDateRef.current;
     let { value: eventTime } = eventTimeRef.current;
     if (eventName === '') {
-      alert('Please inform the event name');
+      setAlerts([...alerts, 'Please inform the event name']);
       return;
     }
     if (eventDate === '') {
-      alert('Please inform the event date');
+      setAlerts([...alerts, 'Please inform the event date']);
       return;
     }
     if (eventTime === '') {
@@ -44,7 +46,7 @@ function Form() {
     }
     const time = `${eventDate} ${eventTime}`;
     if (new Date().getTime() >= new Date(time).getTime()) {
-      alert('Please inform a future date and time');
+      setAlerts([...alerts, 'Please inform a future date and time']);
       return;
     }
     eventNameRef.current.value = '';

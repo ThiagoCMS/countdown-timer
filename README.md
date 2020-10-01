@@ -1,68 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Countdown Timer
 
-## Available Scripts
+Aplicação de contagem regressiva para datas. Ideia de projeto retirada de [Countdown Timer](https://github.com/florinpop17/app-ideas/blob/master/Projects/1-Beginner/Countdown-Timer-App.md) do repositório [App Ideas](https://github.com/florinpop17/app-ideas)
 
-In the project directory, you can run:
+## User Stories
 
-### `yarn start`
+-   [X] User can see an event input box containing an event name field, an
+date field, an optional time, and a 'Start' button.
+-   [X] User can define the event by entering its name, the date it is
+scheduled to take place, and an optional time of the event. If the time is 
+omitted it is assumed to be at Midnight on the event date in the local time
+zone.
+-   [X] User can see a warning message if the event name is blank.
+-   [X] User can see a warning message if the event date or time are incorrectly
+entered. 
+-   [X] User can see a warning message if the time until the event data and time
+that has been entered would overflow the precision of the countdown timer.
+-   [X] User can click on the 'Start' button to see the countdown timer start
+displaying the days, hours, minutes, and seconds until the event takes place.
+-   [X] User can see the elements in the countdown timer automatically
+decrement. For example, when the remaining seconds count reaches 0 the remaining
+minutes count will decrement by 1 and the seconds will start to countdown from 59. This progression must take place from seconds all the way up to the remaining days position in countdown display. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Bonus features
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+-   [X] User can save the event so that it persists across sessions
+-   [X] User can see an alert when the event is reached
+-   [X] User can specify more than one event. 
+-   [X] User can see a countdown timers for each event that has been defined.
