@@ -1,14 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import Event from './Event';
 
-const events = [
-  {
-    title: 'Lançamento do fedora 33',
-    time: '2020-10-27 12:03',
-  },
-];
+import EventsContext from '../../context/EventsContext';
 
 const EventSection = styled.section`
   padding: 4px 16px;
@@ -23,11 +18,13 @@ const EventsWrapper = styled.div`
 `;
 
 function EventList() {
+  const { events } = useContext(EventsContext);
+
   return (
     <EventSection>
       <h2>Events</h2>
       <EventsWrapper>
-        {events.map((event) => <Event title={event.title} time={event.time} />)}
+        {events && events.map((event) => <Event title={event.title} time={event.time} />)}
       </EventsWrapper>
     </EventSection>
   );

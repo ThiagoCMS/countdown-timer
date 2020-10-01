@@ -38,18 +38,17 @@ const InputField = styled.input`
   }
 `;
 
-function Input({ name, placeholder }) {
-  return (
-    <InputWrapper>
-      <Label htmlFor={name}>{name}</Label>
-      <InputField type="text" id={name} name={name} placeholder={placeholder} />
-    </InputWrapper>
-  );
-}
+const Input = React.forwardRef(({ name, placeholder, type }, inputRef) => (
+  <InputWrapper>
+    <Label htmlFor={name}>{name}</Label>
+    <InputField type={type} id={name} name={name} placeholder={placeholder} ref={inputRef} autoComplete="off" />
+  </InputWrapper>
+));
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Input;
